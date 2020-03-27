@@ -1,8 +1,18 @@
-import 'package:flutter/material.dart';
-
-import 'components/Init.dart';
+import "package:flutter/material.dart";
+import 'package:kitchen/components/CreateOrganization.dart';
+import 'package:kitchen/components/CreateUser.dart';
 
 void main(List<String> args) 
 {
-	runApp(Init());
+	runApp(MaterialApp
+	(
+		debugShowCheckedModeBanner: false,
+		title: "Kitchen",
+		initialRoute: "/",
+		routes: 
+		{
+			"/": (context) => CreateOrganization(),
+			"/createUser": (context) => CreateUser()
+		},
+	));
 }

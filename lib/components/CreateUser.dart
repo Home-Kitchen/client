@@ -1,14 +1,14 @@
 import "package:flutter/material.dart";
 
-class CreateOrganization extends StatefulWidget
+class CreateUser extends StatefulWidget
 {
 	createState() 
 	{
-		return(CreateOrganizationState());
+		return(CreateUserState());
 	}
 }
 
-class CreateOrganizationState extends State<CreateOrganization> 
+class CreateUserState extends State<CreateUser> 
 {
 	Widget build(BuildContext context)
 	{
@@ -26,40 +26,43 @@ class CreateOrganizationState extends State<CreateOrganization>
 							Container(margin: EdgeInsets.only(top:50.0)),
 							Container
 							(
+								padding: EdgeInsets.all(10.0),
 								decoration: BoxDecoration
 								(
-									border: Border.all(color: Colors.black)
+									border: Border.all(color: Colors.black),
+									borderRadius: BorderRadius.all(Radius.circular(50.0)),									
 								),
 								child: Icon
 								(
-									Icons.home,
-									size: 80.0									
+									Icons.verified_user,
+									size: 80.0,
+									color: Colors.green,
 								)
 							),
 							Container
 							(
-								padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 20.0),
-								child: Text("An organization resembles the house you want to maintain the inventory for. Enter the details below to create a new organization.", textAlign: TextAlign.center)
+								padding: EdgeInsets.only(left: 5.0, right: 15.0, top: 20.0),
+								child: Text("Create an Admin for your organization", style: TextStyle(fontSize: 15.0),)
 							),
 							TextField
 							(
 								decoration: InputDecoration
 								(
-									hintText: "Join Code",
+									hintText: "Name",
 								),
 							),
 							TextField
 							(
 								decoration: InputDecoration
 								(
-									hintText: "Name"
+									hintText: "Username"
 								),
 							),
 							TextField
 							(
 								decoration: InputDecoration
 								(
-									hintText: "Address",										
+									hintText: "Password",										
 								),
 							),
 							Container
@@ -70,11 +73,8 @@ class CreateOrganizationState extends State<CreateOrganization>
 									width: double.infinity,
 									child: RaisedButton
 									(
-										child: Text("Create", style: TextStyle(fontSize: 20.0),),
-										onPressed: () 
-										{
-											Navigator.pushNamed(context, "/createUser");
-										},
+										child: Text("Create User", style: TextStyle(fontSize: 20.0),),
+										onPressed: () {},
 										color: Colors.yellow,
 										padding: EdgeInsets.all(5.0),
 									)
