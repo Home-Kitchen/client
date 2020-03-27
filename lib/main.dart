@@ -1,6 +1,10 @@
+
+
 import "package:flutter/material.dart";
 import 'package:kitchen/components/CreateOrganization.dart';
 import 'package:kitchen/components/CreateUser.dart';
+import 'package:kitchen/components/Init.dart';
+import 'package:kitchen/components/Join.dart';
 
 void main(List<String> args) 
 {
@@ -11,8 +15,10 @@ void main(List<String> args)
 		initialRoute: "/",
 		routes: 
 		{
-			"/": (context) => CreateOrganization(),
-			"/createUser": (context) => CreateUser()
+			"/": (context) => Init(),
+			"/createOrganization": (context) => CreateOrganization(),
+			"/createUser": (context) => CreateUser(),
+			"/join": (context) => Join()
 		},
 	));
 }

@@ -23,7 +23,7 @@ class Init extends StatelessWidget
 									color: Colors.orangeAccent,
 									child: InkWell
 									(
-										splashColor: Colors.amber,
+										splashColor: Colors.blue,
 										child: SizedBox
 										(
 											width:100, 
@@ -43,7 +43,7 @@ class Init extends StatelessWidget
 							(
 								onPressed:()
 								{
-									
+									Navigator.pushNamed(context, "/createOrganization");
 								},
 								splashColor: Colors.blue,
 								child: Text("CREATE"),
@@ -53,7 +53,10 @@ class Init extends StatelessWidget
 							Padding(padding: EdgeInsets.only(bottom:20),),
 							RaisedButton
 							(
-								onPressed:(){},
+								onPressed:()
+								{
+									Navigator.pushNamed(context, "/join");
+								},
 								child: Text("JOIN"),
 								splashColor: Colors.blue,
 								textColor: Colors.white,
