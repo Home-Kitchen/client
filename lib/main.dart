@@ -1,6 +1,8 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 
-void main()
+import 'components/Init.dart';
+
+void main(List<String> args) 
 {
-	runApp();
+	runApp(Init());
 }
