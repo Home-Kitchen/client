@@ -1,7 +1,8 @@
-import 'dart:convert';
+// import 'dart:convert';
 import "package:flutter/material.dart";
-import 'package:kitchen/constants/Store.dart';
-import "../constants/Api.dart";
+// import 'package:kitchen/constants/Store.dart';
+// import "../constants/Api.dart";
+
 class AddItem extends StatefulWidget
 {
 	createState()
@@ -105,13 +106,13 @@ class ItemState extends State<AddItem>
 			),
 		);
 	}
-	Future<bool> addItem(String name, double quantity, double weight, double price)async
-	{
-		await Store.init();
-		Api apiClient = new Api();
 
-		String endpoint = this.prefixUrl + "/addList";
+	// Future<bool> addItem(String name, double quantity, double weight, double price)async
+	// {
+	// 	await Store.init();
+	// 	Api apiClient = new Api();
 
+<<<<<<< HEAD
 		Map body = 
 		{
 			"name" :name,
@@ -140,4 +141,16 @@ class ItemState extends State<AddItem>
 		}
 		return (false);
 	}
+=======
+	// 	String endpoint = this.prefixUrl + "/addList";
+
+	// 	Map body = 
+	// 	{
+	// 		"name" :name,
+	// 		"quantity": quantity,
+	// 		"weight" : weight,
+	// 		"price": price
+	// 	};		
+	// }
+>>>>>>> 84d59e33090a35d4c9cb5c3314ac10177865fa8c
 }

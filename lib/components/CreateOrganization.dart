@@ -134,7 +134,7 @@ class CreateOrganizationState extends State<CreateOrganization>
 			await Store.store.setString("address", parsedResponse["data"]["address"]);
 			
 			return(true);
-		}		
+		}
 
 		return(false);
 	}
