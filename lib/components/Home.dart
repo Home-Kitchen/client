@@ -18,7 +18,7 @@ import 'package:flutter/material.dart';
 			 (
 				appBar: AppBar
 				(
-					title: Text("KITCHEN"),
+					title: Text(""),
 					backgroundColor: Colors.deepPurpleAccent,
 				),
 				body: Column
@@ -34,7 +34,7 @@ import 'package:flutter/material.dart';
 					color: Colors.deepPurpleAccent,
 					child: Row
 					(
-						children: <Widget>
+						children:
 						[
 							Padding(padding: EdgeInsets.only(left: 10)),
 							IconButton
