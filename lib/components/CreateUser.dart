@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import 'package:kitchen/constants/Store.dart';
+
 
 class CreateUser extends StatefulWidget
 {
@@ -11,7 +13,7 @@ class CreateUser extends StatefulWidget
 class CreateUserState extends State<CreateUser> 
 {
 	Widget build(BuildContext context)
-	{
+	{				
 		return 
 		(
 			Scaffold
@@ -38,6 +40,17 @@ class CreateUserState extends State<CreateUser>
 									size: 80.0,
 									color: Colors.green,
 								)
+							),
+							Container
+							(
+								child: Column
+								(
+									children: 
+									[
+										Text(Store.store.getString("name")),
+										Text(Store.store.getString("address")),										
+									],
+								),
 							),
 							Container
 							(

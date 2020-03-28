@@ -3,10 +3,13 @@ import 'dart:io';
 
 class Api 
 {
-	Future<String> post(String url, String contentType, Map body) async 
+	final String baseUrl = "http://whispering-sea-21866.herokuapp.com";
+
+	Future<String> post(String url, Map body) async 
 	{
 		HttpClient httpClient = new HttpClient();
-		HttpClientRequest request = await httpClient.postUrl(Uri.parse(url));
+		String contentType = "application/json";
+		HttpClientRequest request = await httpClient.postUrl(Uri.parse(this.baseUrl + url));
 		request.headers.set('content-type', contentType);
 		request.add(utf8.encode(json.encode(body)));
 		
