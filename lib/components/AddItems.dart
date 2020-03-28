@@ -1,7 +1,4 @@
-// import 'dart:convert';
 import "package:flutter/material.dart";
-// import 'package:kitchen/constants/Store.dart';
-// import "../constants/Api.dart";
 
 class AddItem extends StatefulWidget
 {
@@ -106,20 +103,4 @@ class ItemState extends State<AddItem>
 			),
 		);
 	}
-
-	// Future<bool> addItem(String name, double quantity, double weight, double price)async
-	// {
-	// 	await Store.init();
-	// 	Api apiClient = new Api();
-
-	// 	String endpoint = this.prefixUrl + "/addList";
-
-	// 	Map body = 
-	// 	{
-	// 		"name" :name,
-	// 		"quantity": quantity,
-	// 		"weight" : weight,
-	// 		"price": price
-	// 	};		
-	// }
 }

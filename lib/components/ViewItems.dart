@@ -49,9 +49,10 @@ class ViewItemsState extends State<ViewItems> with WidgetsBindingObserver
 								leading: Image.network(this.items[position]["picture"]),
 								title: Text(this.items[position]["name"]),
 								subtitle: Text(this.items[position]["_id"]),
-								onTap: () 
+								onTap: () async
 								{
-									print(this.items[position]);
+									await Store.store.setString("itemId", this.items[position]["_id"]);
+									Navigator.pushNamed(context, "/viewItemDetails");
 								},
 							),
     					);
@@ -84,6 +85,6 @@ class ViewItemsState extends State<ViewItems> with WidgetsBindingObserver
 			{
 				this.items = parsedResponse["data"];
 			});			
-		}		
+		}
 	}
 }
