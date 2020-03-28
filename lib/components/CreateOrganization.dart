@@ -1,6 +1,6 @@
 import 'dart:convert';
-
 import "package:flutter/material.dart";
+import 'package:kitchen/constants/Store.dart';
 import "../constants/Api.dart";
 
 class CreateOrganization extends StatefulWidget
@@ -13,7 +13,7 @@ class CreateOrganization extends StatefulWidget
 
 class CreateOrganizationState extends State<CreateOrganization> 
 {
-	final String prefixUrl = "/organization";
+	final String prefixUrl = "/organization";	
 	
 	// Controllers
 	var txtNameController = TextEditingController();
@@ -82,10 +82,15 @@ class CreateOrganizationState extends State<CreateOrganization>
 									child: RaisedButton
 									(
 										child: Text("Create", style: TextStyle(fontSize: 20.0),),
-										onPressed: () 
-										{
-											// Navigator.pushNamed(context, "/createUser");
-											this.createOrganization(txtNameController.text, txtAddressController.text, "");
+										onPressed: () async
+										{											
+											bool x = await this.createOrganization(txtNameController.text, txtAddressController.text, "");
+											print(x);
+
+											if (x == true)
+											{
+												Navigator.pushNamed(context, "/createUser");
+											}
 										},
 										color: Colors.yellow,
 										padding: EdgeInsets.all(5.0),
@@ -99,11 +104,12 @@ class CreateOrganizationState extends State<CreateOrganization>
 		);
 	}
 
-	createOrganization(String name, String address, String code) async 
+	Future<bool> createOrganization(String name, String address, String code) async 
 	{
+		await Store.init();
 		Api apiClient = new Api();
 
-		String endpoint = this.prefixUrl + "/create";	
+		String endpoint = this.prefixUrl + "/create";
 
 		Map body = 
 		{
@@ -121,7 +127,15 @@ class CreateOrganizationState extends State<CreateOrganization>
 
 		if (parsedResponse["status"] == 200)
 		{
-			Navigator.pushNamed(context, "/createUser");
-		}
+			print(parsedResponse["data"]["name"]);
+
+			await Store.store.setString("organizationId", parsedResponse["data"]["_id"]);
+			await Store.store.setString("name", parsedResponse["data"]["name"]);
+			await Store.store.setString("address", parsedResponse["data"]["address"]);
+			
+			return(true);
+		}		
+
+		return(false);
 	}
 }
