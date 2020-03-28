@@ -157,13 +157,9 @@ class ItemState extends State<AddItem>
 
 		if (parsedResponse["status"] == 200)
 		{
-			print(parsedResponse["data"]["name"]);
 
-			await Store.store.setString("organizationId", parsedResponse["data"]["_id"]);
-			await Store.store.setString("name", parsedResponse["data"]["name"]);
-			await Store.store.setString("quantity", parsedResponse["data"]["quantity"]);
-			await Store.store.setString("weight", parsedResponse["data"]["weight"]);
-			await Store.store.setString("price", parsedResponse["data"]["price"]);
+
+
 
 			return (true);
 			
