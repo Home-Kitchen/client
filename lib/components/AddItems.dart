@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
-
+import 'dart:convert';
+import "package:flutter/material.dart";
+import 'package:kitchen/constants/Store.dart';
+import "../constants/Api.dart";
 class AddItem extends StatefulWidget
 {
 	createState()
@@ -10,6 +12,15 @@ class AddItem extends StatefulWidget
 
 class ItemState extends State<AddItem>
 {
+	final String prefixUrl = "/item";
+
+	// contoller
+	var txtNameController = TextEditingController();
+	var txtQuantityController = TextEditingController();
+	var txtWeightController = TextEditingController();
+	var txtPriceController = TextEditingController();
+
+
 	Widget build(BuildContext context)
 	{
 		return Scaffold
@@ -93,5 +104,24 @@ class ItemState extends State<AddItem>
 				child: Icon(Icons.view_list),
 			),
 		);
+	}
+	Future<bool> addItem(String name, double quantity, double weight, double price)async
+	{
+		await Store.init();
+		Api apiClient = new Api();
+
+		String endpoint = this.prefixUrl + "/addList";
+
+		Map body = 
+		{
+			"name" :name,
+			"quantity": quantity,
+			"weight" : weight,
+			"price": price
+		},
+		 print(body);
+
+			var
+
 	}
 }
