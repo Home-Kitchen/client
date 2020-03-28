@@ -1,5 +1,7 @@
+
 import "package:flutter/material.dart";
 import 'package:kitchen/components/AddItems.dart';
+import 'package:kitchen/components/AddQuantity.dart';
 import 'package:kitchen/components/CreateOrganization.dart';
 import 'package:kitchen/components/CreateUser.dart';
 import 'package:kitchen/components/Init.dart';
@@ -26,7 +28,8 @@ void main()
 			"/home": (context) => Home(),
 			"/addItem": (context) => AddItem(),
 			"/viewList" :(context) => ViewItems(),
-			"/viewItemDetails": (context) => ItemDetails()
+			"/viewItemDetails": (context) => ItemDetails(),
+			"/addQuantity": (context) => Quantity()
 		},
 	));
 }

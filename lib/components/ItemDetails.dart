@@ -44,7 +44,10 @@ class ItemDetailsState extends State<ItemDetails> with WidgetsBindingObserver
 				),
 				floatingActionButton: FloatingActionButton
 			(
-				onPressed: (){},
+				onPressed: ()
+				{
+					Navigator.pushNamed(context, "/addQuantity");
+				},
 				child:Icon
 				(
 					Icons.add_box,
