@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import "package:flutter/material.dart";
+import 'package:kitchen/constants/Api.dart';
 import 'package:kitchen/constants/Store.dart';
 
 
@@ -12,6 +15,12 @@ class CreateUser extends StatefulWidget
 
 class CreateUserState extends State<CreateUser> 
 {
+	final String prefixUrl = "/user";
+
+	var txtNameController = TextEditingController();
+	var txtUsernameController = TextEditingController();
+	var txtPasswordController = TextEditingController();
+
 	Widget build(BuildContext context)
 	{				
 		return 
@@ -59,6 +68,7 @@ class CreateUserState extends State<CreateUser>
 							),
 							TextField
 							(
+								controller: txtNameController,
 								decoration: InputDecoration
 								(
 									hintText: "Name",
@@ -66,6 +76,7 @@ class CreateUserState extends State<CreateUser>
 							),
 							TextField
 							(
+								controller: txtUsernameController,
 								decoration: InputDecoration
 								(
 									hintText: "Username"
@@ -73,6 +84,7 @@ class CreateUserState extends State<CreateUser>
 							),
 							TextField
 							(
+								controller: txtPasswordController,
 								decoration: InputDecoration
 								(
 									hintText: "Password",										
@@ -86,8 +98,16 @@ class CreateUserState extends State<CreateUser>
 									width: double.infinity,
 									child: RaisedButton
 									(
-										child: Text("Create User", style: TextStyle(fontSize: 20.0),),
-										onPressed: () {},
+										child: Text("Create User", style: TextStyle(fontSize: 20.0)),
+										onPressed: () async
+										{
+											var isCreated = await this.createUser(txtNameController.text, txtUsernameController.text, txtPasswordController.text);
+
+											if (isCreated)
+											{
+												Navigator.pushNamed(context, "/home");
+											}
+										},
 										color: Colors.yellow,
 										padding: EdgeInsets.all(5.0),
 									)
@@ -98,5 +118,33 @@ class CreateUserState extends State<CreateUser>
 				)
 			)			
 		);
+	}
+
+	Future<bool> createUser(String name, String username, String password) async 
+	{
+		Api apiClient = Api();
+
+		String url = this.prefixUrl + "/create";
+
+		Map body = 
+		{
+			"organizationId": Store.store.getString("organizationId"),
+			"name": name,
+			"username": username,
+			"password": password
+		};
+
+		var response = await apiClient.post(url, body);
+		var parsedResponse = jsonDecode(response);
+
+		if (parsedResponse["status"] == 200)
+		{
+			await Store.store.setString("userId", parsedResponse["data"]["_id"]);
+			await Store.store.setString("username", parsedResponse["data"]["name"]);			
+			
+			return(true);
+		}
+
+		return(false);
 	}
 }
