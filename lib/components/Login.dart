@@ -24,7 +24,7 @@ class LoginState extends State<Login>
 		return MaterialApp
 		(
 			home: Scaffold
-			(
+			(			
 				body: Container
 				(
 					padding: EdgeInsets.only(bottom: 2,top:75,left:30,right: 30),
@@ -79,7 +79,7 @@ class LoginState extends State<Login>
 
 											if (success)
 											{
-												Navigator.pushNamed(context, "/home");
+												Navigator.pushReplacementNamed(context, "/home");
 											}											
 										},
 										child: Text("LOGIN"),

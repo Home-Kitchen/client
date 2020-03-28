@@ -7,6 +7,8 @@ import 'package:kitchen/components/ItemDetails.dart';
 import 'package:kitchen/components/Join.dart';
 import 'package:kitchen/components/Login.dart';
 import 'package:kitchen/components/Home.dart';
+import 'package:kitchen/components/Order.dart';
+import 'package:kitchen/components/OrderItems.dart';
 import 'package:kitchen/components/ViewItems.dart';
 
 void main() 
@@ -26,7 +28,9 @@ void main()
 			"/home": (context) => Home(),
 			"/addItem": (context) => AddItem(),
 			"/viewList" :(context) => ViewItems(),
-			"/viewItemDetails": (context) => ItemDetails()
+			"/viewItemDetails": (context) => ItemDetails(),
+			"/orders": (context) => Order(),
+			"/orderItems": (context) => OrderItems()
 		},
 	));
 }
