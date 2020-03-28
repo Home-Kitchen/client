@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Join extends StatefulWidget
+class Login extends StatefulWidget
 {
-	createState() 
+	createState()
 	{
-		return(JoinState());
+		return LoginState();
 	}
 }
 
-class JoinState extends State<Join>
+class LoginState extends State<Login>
 {
 	Widget build(BuildContext context)
 	{
@@ -18,24 +18,23 @@ class JoinState extends State<Join>
 			(
 				body: Container
 				(
-					padding: EdgeInsets.only(left: 30,right: 30,top: 130,bottom: 2),
-					child: Column
+					padding: EdgeInsets.only(bottom: 2,top:75,left:30,right: 30),
+					child:Column
 					(
-						// mainAxisAlignment: MainAxisAlignment.center,
 						children: <Widget>
 						[
 							Container
 							(
 								margin: EdgeInsets.all(20),
-								padding: EdgeInsets.all(12),
+								padding: EdgeInsets.all(1),
 								decoration: BoxDecoration
 								(
-									borderRadius: BorderRadius.circular(155),
+									borderRadius: BorderRadius.circular(100),
 									border: Border.all(width:2, color:Colors.black26)
 								),
 								child: Icon
 								(
-									Icons.beenhere,
+									Icons.local_activity,
 									color: Colors.green,
 									size: 50,
 								),
@@ -44,8 +43,15 @@ class JoinState extends State<Join>
 							(
 								decoration: InputDecoration
 								(
-									hintText: "Join Code",
+									hintText: "Username",
 								),
+							),
+							TextField
+							(
+								decoration: InputDecoration
+								(
+									hintText: "Password",
+								)
 							),
 							Padding(padding: EdgeInsets.only(bottom:20),),
 							Container
@@ -57,9 +63,9 @@ class JoinState extends State<Join>
 									(
 										onPressed: ()
 										{
-											Navigator.pushNamed(context, "/login");
+											Navigator.pushNamed(context, "/home");
 										},
-										child: Text("JOIN"),
+										child: Text("LOGIN"),
 										textColor: Colors.black,
 										color: Colors.orangeAccent,
 									),			

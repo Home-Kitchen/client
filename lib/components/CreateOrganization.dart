@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "../constants/Api.dart";
 
 class CreateOrganization extends StatefulWidget
 {
@@ -73,7 +74,8 @@ class CreateOrganizationState extends State<CreateOrganization>
 										child: Text("Create", style: TextStyle(fontSize: 20.0),),
 										onPressed: () 
 										{
-											Navigator.pushNamed(context, "/createUser");
+											// Navigator.pushNamed(context, "/createUser");
+											this.createOrganization("a", "b", "c");
 										},
 										color: Colors.yellow,
 										padding: EdgeInsets.all(5.0),
@@ -85,5 +87,21 @@ class CreateOrganizationState extends State<CreateOrganization>
 				)
 			)			
 		);
+	}
+
+	createOrganization(String name, String address, String code) async 
+	{
+		Api apiClient = new Api();
+
+		String url = "http://ec2-52-66-203-69.ap-south-1.compute.amazonaws.com:3000/product/fetchAllProducts";
+		String contentType = "application/json";
+
+		Map body = 
+		{
+			"organizationId":"5e67647bb844126034ae85e3"
+		};
+
+		var response = await apiClient.post(url, contentType, body);
+		print(response);
 	}
 }

@@ -65,7 +65,10 @@ class Init extends StatelessWidget
 							Padding(padding: EdgeInsets.only(bottom:20),),
 							RaisedButton
 							(
-								onPressed:(){},
+								onPressed:()
+								{
+									Navigator.pushNamed(context, "/login");
+								},
 								child: Text("LOGIN"),
 								splashColor: Colors.blue,
 								textColor: Colors.white,
