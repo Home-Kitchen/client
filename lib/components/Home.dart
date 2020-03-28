@@ -39,12 +39,12 @@ import 'package:flutter/material.dart';
 							Padding(padding: EdgeInsets.only(left: 10)),
 							IconButton
 							(
-								icon:Icon(Icons.home),
-								color: Colors.white70,
+								icon:Icon(Icons.add_to_queue),
+								color: Colors.white,
 								iconSize: 45,
 								onPressed: ()
 								{
-									Navigator.pushNamed(context, "/home");
+									Navigator.pushNamed(context, "/order");
 								},
 							),
 							Padding(padding: EdgeInsets.only(left: 200)),
