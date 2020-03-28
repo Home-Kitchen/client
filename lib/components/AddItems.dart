@@ -1,7 +1,7 @@
-// import 'dart:convert';
+import 'dart:convert';
 import "package:flutter/material.dart";
-// import 'package:kitchen/constants/Store.dart';
-// import "../constants/Api.dart";
+import 'package:kitchen/constants/Store.dart';
+import "../constants/Api.dart";
 
 class AddItem extends StatefulWidget
 {
@@ -52,6 +52,7 @@ class ItemState extends State<AddItem>
 						),
 						TextField
 						(
+							controller: txtNameController,
 							decoration: InputDecoration
 							(
 								hintText:"Name", 
@@ -59,24 +60,30 @@ class ItemState extends State<AddItem>
 						),
 						TextField
 						(
+							controller: txtQuantityController,
 							decoration: InputDecoration
 							(
-								hintText:"Quantity", 
+								hintText:"Quantity", 																
 							),
+							keyboardType: TextInputType.number,
 						),
 						TextField
 						(
+							controller: txtWeightController,
 							decoration: InputDecoration
 							(
 								hintText:"Weight", 
 							),
+							keyboardType: TextInputType.number,
 						),
 						TextField
 						(
+							controller: txtPriceController,
 							decoration: InputDecoration
 							(
 								hintText:"Price", 
 							),
+							keyboardType: TextInputType.number,
 						),
 						Padding(padding: EdgeInsets.only(bottom:10)),
 						Container
@@ -87,7 +94,18 @@ class ItemState extends State<AddItem>
 								child: RaisedButton
 								(		
 									color: Colors.orangeAccent,
-									onPressed: (){}, 
+									onPressed: () async
+									{
+										print(txtNameController.text);
+
+										bool x = await this.addItem(txtNameController.text, txtQuantityController.text, txtWeightController.text, txtPriceController.text);
+										print(x);
+
+										if(x == true)
+										{
+											Navigator.pushNamed(context, "/home");
+										}
+									}, 
 									child: Text("ADD")
 								),
 							),
@@ -107,20 +125,29 @@ class ItemState extends State<AddItem>
 		);
 	}
 
-	// Future<bool> addItem(String name, double quantity, double weight, double price)async
-	// {
-	// 	await Store.init();
-	// 	Api apiClient = new Api();
+	Future<bool> addItem(String name, String quantity, String weight, String price) async
+	{
+		
+		Api apiClient = new Api();
 
-<<<<<<< HEAD
+		String endpoint = this.prefixUrl + "/create";
+
 		Map body = 
 		{
+			"organizationId": Store.store.getString("organizationId"),
 			"name" :name,
-			"quantity": quantity,
-			"weight" : weight,
-			"price": price
+			"stocks":
+			[
+				{
+					"quantity": quantity,
+					"weight" : weight,
+					"price": price,
+					"userId": Store.store.getString("userId")
+				}
+			]
 		};
-		 print(body);
+
+		print(body);
 
 		var response = await apiClient.post(endpoint, body);
 		var parsedResponse = jsonDecode(response);
@@ -130,6 +157,8 @@ class ItemState extends State<AddItem>
 
 		if (parsedResponse["status"] == 200)
 		{
+			print(parsedResponse["data"]["name"]);
+
 			await Store.store.setString("organizationId", parsedResponse["data"]["_id"]);
 			await Store.store.setString("name", parsedResponse["data"]["name"]);
 			await Store.store.setString("quantity", parsedResponse["data"]["quantity"]);
@@ -141,16 +170,4 @@ class ItemState extends State<AddItem>
 		}
 		return (false);
 	}
-=======
-	// 	String endpoint = this.prefixUrl + "/addList";
-
-	// 	Map body = 
-	// 	{
-	// 		"name" :name,
-	// 		"quantity": quantity,
-	// 		"weight" : weight,
-	// 		"price": price
-	// 	};		
-	// }
->>>>>>> 84d59e33090a35d4c9cb5c3314ac10177865fa8c
 }

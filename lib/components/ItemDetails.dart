@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import 'package:kitchen/constants/Api.dart';
+// import 'package:kitchen/constants/Api.dart';
 
 class ItemDetails extends StatefulWidget
 {
@@ -13,9 +13,9 @@ class ItemDetailsState extends State<ItemDetails>
 {
 	final String prefixUrl = "/item";
 
-	Widget build()
+	Widget build(BuildContext context)
 	{
-		return 
+		return Scaffold
 		(
 			
 		);
