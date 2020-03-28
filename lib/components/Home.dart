@@ -12,56 +12,52 @@ import 'package:flutter/material.dart';
  {
 	 Widget build(BuildContext context)
 	 {
-		 return MaterialApp
-		 (
-			 home: Scaffold
-			 (
-				appBar: AppBar
-				(
-					title: Text(""),
-					backgroundColor: Colors.deepPurpleAccent,
-				),
-				body: Column
-				(
-					children: <Widget>
-					[
-						Container(), 
-						Container(),
+		return Scaffold
+		(
+			appBar: AppBar
+			(
+				title: Text(""),
+				backgroundColor: Colors.green,
+			),
+			body: Column
+			(
+				children: <Widget>
+				[
+					Container(), 
+					Container(),
+				],
+			),
+			bottomNavigationBar: BottomAppBar
+			(
+				color: Colors.green,
+				child: Row
+				(						
+					children:
+					[							
+						IconButton
+						(
+							icon:Icon(Icons.home),
+							color: Colors.white70,
+							iconSize: 35,								
+							onPressed: ()
+							{
+								Navigator.pushNamed(context, "/home");
+							},
+						),							
+						IconButton
+						(
+							icon:Icon(Icons.check_box),
+							color: Colors.white70,
+							iconSize: 35,
+							alignment: Alignment.centerRight,
+							onPressed: ()
+							{
+								Navigator.pushNamed(context, "/addItem");
+							},
+						),
 					],
 				),
-				bottomNavigationBar: BottomAppBar
-				(
-					color: Colors.deepPurpleAccent,
-					child: Row
-					(
-						children:
-						[
-							Padding(padding: EdgeInsets.only(left: 10)),
-							IconButton
-							(
-								icon:Icon(Icons.home),
-								color: Colors.white70,
-								iconSize: 45,
-								onPressed: ()
-								{
-									Navigator.pushNamed(context, "/home");
-								},
-							),
-							Padding(padding: EdgeInsets.only(left: 200)),
-							IconButton
-							(
-								icon:Icon(Icons.check_box),
-								color: Colors.white70,
-								iconSize: 45,
-								onPressed: ()
-								{
-									Navigator.pushNamed(context, "/addItem");
-								},
-							),
-						],
-					),
-				),
-			 ),
-		 );
+			),
+		);
 	 }
  }
