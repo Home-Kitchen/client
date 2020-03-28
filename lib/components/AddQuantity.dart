@@ -123,15 +123,11 @@ class QuantityState extends State<Quantity>
 		{
 			"organizationId": Store.store.getString("organizationId"),
 			"itemId": Store.store.getString("itemId"),
-			"stocks":
-			[
-				{
-					"quantity": quantity,
-					"weight" : weight,
-					"price": price,
-					"userId": Store.store.getString("userId")
-				}
-			]
+			"quantity": quantity,
+			"weight" : weight,
+		    "price": price,
+			"userId": Store.store.getString("userId")
+				
 		};
 
 		print(body);
