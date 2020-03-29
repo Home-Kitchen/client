@@ -5,15 +5,15 @@ import 'package:kitchen/constants/Api.dart';
 import 'package:kitchen/constants/Store.dart';
 import "package:intl/intl.dart";
 
-class Order extends StatefulWidget
+class OrderItems extends StatefulWidget
 {
 	createState()
 	{
-		return(OrderState());
+		return(OrderItemsState());
 	}
 }
 
-class OrderState extends State<Order>
+class OrderItemsState extends State<OrderItems>
 {
 	final String prefixUrl = "/order";
 
@@ -25,7 +25,7 @@ class OrderState extends State<Order>
 
 		WidgetsBinding.instance.addPostFrameCallback((_)
 		{
-			fetchOrders();						
+			fetchOrders();			
 		});
 	}
 	
@@ -37,7 +37,7 @@ class OrderState extends State<Order>
 			(
 				appBar: AppBar
 				(
-					title: Text("Orders"),
+					title: Text("Order Items"),
 					backgroundColor: Colors.green,
 				),
 				body: Container
@@ -59,7 +59,7 @@ class OrderState extends State<Order>
 										crossAxisAlignment: CrossAxisAlignment.start,
 										children: 
 										[
-											Text("Orders", style: TextStyle(fontSize: 35.0, fontWeight: FontWeight.bold)),
+											Text("Order Items", style: TextStyle(fontSize: 35.0, fontWeight: FontWeight.bold)),
 											Text("Create a new order list or add items to an existing one. Once done you can also mark off items from the list.")
 										]
 									)
@@ -96,7 +96,7 @@ class OrderState extends State<Order>
 													), 
 													onTap: () 
 													{
-														Store.store.setString("orderId", this.orders[position]["_id"]);
+														// print(this.stocks[position]);
 													},
 												),
 											);
@@ -172,40 +172,14 @@ class OrderState extends State<Order>
 								}
 							},
 						),
-					)					
+					)
 				],
 			),
 		);
 	}
 
-	Widget loader(BuildContext context)
-	{
-		return AlertDialog
-		(
-			content: Container
-			(
-				padding: EdgeInsets.only(top: 20.0),
-				height: 100.0,
-				width: 100.0,
-				child: Column
-				(																							
-					children: 
-					[
-						CircularProgressIndicator
-						(
-							backgroundColor: Colors.green,
-						),
-						Container(child: Text("Fetching Resources!"), margin: EdgeInsets.only(top:20.0))
-					]
-				)
-			)
-		);
-	}
-
 	fetchOrders() async
 	{
-		showDialog(context: context, barrierDismissible: false, builder: (BuildContext context) => loader(context));
-
 		Api apiClient = Api();
 
 		String url = prefixUrl + "/list";
@@ -225,15 +199,12 @@ class OrderState extends State<Order>
 			setState(() 
 			{
 				this.orders = parsedResponse["data"];
-			});
+			});			
 		}
-
-		Navigator.pop(context);
 	}
 
 	Future<bool> createList(String name, String desc) async
-	{	
-		Navigator.pop(context);	
+	{
 		Api apiClient = Api();
 
 		String url = prefixUrl + "/create";
@@ -246,8 +217,7 @@ class OrderState extends State<Order>
 		};
 
 		var response = await apiClient.post(url, body);
-		
-		var parsedResponse = jsonDecode(response);		
+		var parsedResponse = jsonDecode(response);
 
 		if (parsedResponse["status"] == 200)
 		{

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kitchen/constants/Store.dart';
  
  class Home extends StatefulWidget
  {
@@ -12,56 +13,156 @@ import 'package:flutter/material.dart';
  {
 	 Widget build(BuildContext context)
 	 {
-		 return MaterialApp
-		 (
-			 home: Scaffold
-			 (
-				appBar: AppBar
-				(
-					title: Text(""),
-					backgroundColor: Colors.deepPurpleAccent,
-				),
-				body: Column
-				(
-					children: <Widget>
+		return Scaffold
+		(
+			appBar: AppBar
+			(				
+				automaticallyImplyLeading: false,				
+				title: Column
+				(					
+					crossAxisAlignment: CrossAxisAlignment.start,					
+					children: 
 					[
-						Container(), 
-						Container(),
+						Text("Home"),
+						Text(Store.store.getString("username"), style: TextStyle(fontSize: 12.0),)
 					],
-				),
-				bottomNavigationBar: BottomAppBar
-				(
-					color: Colors.deepPurpleAccent,
-					child: Row
+				),				
+				backgroundColor: Colors.green,
+			),
+			body: Column
+			(
+				children: <Widget>
+				[
+					Card
 					(
-						children:
+						child: Column
+						(
+							crossAxisAlignment: CrossAxisAlignment.start,
+							children:
+							[
+								ListTile
+								(
+									contentPadding: EdgeInsets.only(left: 20.0, top: 30.0),
+									title: Text("Budget", style: TextStyle(fontSize: 30.0),),
+									subtitle: Text("Spendings so far!"),
+								),
+								Padding
+								(
+									padding: EdgeInsets.only(left: 20.0, bottom: 20.0),
+									child: Text("353/5000", style: TextStyle(fontSize: 40.0))
+								),
+								
+							]
+						)
+					),
+					Row
+					(
+						mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+						children: 
 						[
-							Padding(padding: EdgeInsets.only(left: 10)),
-							IconButton
+							Flexible
 							(
-								icon:Icon(Icons.add_to_queue),
-								color: Colors.white,
-								iconSize: 45,
-								onPressed: ()
-								{
-									Navigator.pushNamed(context, "/order");
-								},
+								child: Card
+								(
+									child: ListTile
+									(
+										contentPadding: EdgeInsets.all(30.0),
+										title: Text("25,234", style: TextStyle(fontSize: 40.0),),
+										subtitle: Text("Total Spent"),
+									)
+								)
 							),
-							Padding(padding: EdgeInsets.only(left: 200)),
-							IconButton
+							Flexible
 							(
-								icon:Icon(Icons.check_box),
-								color: Colors.white70,
-								iconSize: 45,
-								onPressed: ()
-								{
-									Navigator.pushNamed(context, "/addItem");
-								},
-							),
+								child: Card
+								(
+									child: ListTile
+									(
+										contentPadding: EdgeInsets.all(30.0),
+										title: Text("62", style: TextStyle(fontSize: 40.0),),
+										subtitle: Text("Total Items"),
+									)
+								)
+							)
 						],
 					),
+					Card
+					(
+						child: ListTile
+						(
+							contentPadding: EdgeInsets.all(25.0),
+							title: Text("Recent Additions", style: TextStyle(fontSize: 30.0)),
+							subtitle: Text("Here are some of the recent items you have purchased"),
+						),
+					)
+				],
+			),
+			bottomNavigationBar: BottomAppBar
+			(
+				color: Colors.green,
+				child: Row
+				(
+					children:
+					[							
+						IconButton
+						(
+							icon:Icon(Icons.home),
+							color: Colors.white70,
+							iconSize: 35,								
+							onPressed: ()
+							{
+								Navigator.pushNamed(context, "/home");
+							},
+						),							
+						IconButton
+						(
+							icon:Icon(Icons.check_box),
+							color: Colors.white70,
+							iconSize: 35,
+							alignment: Alignment.centerRight,
+							onPressed: ()
+							{
+								Navigator.pushNamed(context, "/addItem");
+							},
+						),
+						IconButton
+						(
+							icon:Icon(Icons.face),
+							color: Colors.white70,
+							iconSize: 35,
+							alignment: Alignment.center,
+							onPressed: ()
+							{
+								Navigator.pushNamed(context, "/addItem");
+							},
+						),
+
+						IconButton
+						(
+							icon:Icon(Icons.list),
+							color: Colors.white70,
+							iconSize: 35,
+							alignment: Alignment.center,
+							onPressed: ()
+							{
+								Navigator.pushNamed(context, "/orders");
+							},
+						),
+
+						IconButton
+						(
+							icon:Icon(Icons.view_stream),
+							color: Colors.white70,
+							iconSize: 35,
+							alignment: Alignment.center,
+							onPressed: ()
+							{
+								Navigator.pushNamed(context, "/viewProfile");
+							},
+						),
+					],
 				),
-			 ),
-		 );
+			),
+		);
 	 }
  }

@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:kitchen/constants/Api.dart';
+import 'package:kitchen/constants/Store.dart';
 
 class Login extends StatefulWidget
 {
@@ -10,12 +14,17 @@ class Login extends StatefulWidget
 
 class LoginState extends State<Login>
 {
+	final String prefixUrl = "/user";
+
+	var txtUsernameController = TextEditingController();
+	var txtPasswordController = TextEditingController();
+
 	Widget build(BuildContext context)
 	{
 		return MaterialApp
 		(
 			home: Scaffold
-			(
+			(			
 				body: Container
 				(
 					padding: EdgeInsets.only(bottom: 2,top:75,left:30,right: 30),
@@ -41,6 +50,7 @@ class LoginState extends State<Login>
 							),
 							TextField
 							(
+								controller: txtUsernameController,
 								decoration: InputDecoration
 								(
 									hintText: "Username",
@@ -48,6 +58,8 @@ class LoginState extends State<Login>
 							),
 							TextField
 							(
+								controller: txtPasswordController,
+								obscureText: true,
 								decoration: InputDecoration
 								(
 									hintText: "Password",
@@ -61,9 +73,14 @@ class LoginState extends State<Login>
 									width: double.infinity,
 									child: RaisedButton
 									(
-										onPressed: ()
+										onPressed: () async
 										{
-											Navigator.pushNamed(context, "/home");
+											var success = await this.userLogin(txtUsernameController.text, txtPasswordController.text);
+
+											if (success)
+											{
+												Navigator.pushReplacementNamed(context, "/home");
+											}											
 										},
 										child: Text("LOGIN"),
 										textColor: Colors.black,
@@ -76,5 +93,37 @@ class LoginState extends State<Login>
 				),
 			),
 		);
+	}
+
+	Future<bool> userLogin(String username, String password) async
+	{
+		await Store.init();
+		Api apiClient = Api();
+
+		String url = prefixUrl + "/login";
+
+		Map body = 
+		{
+			"username": username,
+			"password": password
+		};
+
+		print(body);
+
+		var response = await apiClient.post(url, body);
+		var parsedResponse = jsonDecode(response);
+
+		print(parsedResponse);
+
+		if (parsedResponse["status"] == 200)
+		{
+			await Store.store.setString("organizationId", parsedResponse["data"]["organizationId"]);
+			await Store.store.setString("username", parsedResponse["data"]["name"]);
+			await Store.store.setString("userId", parsedResponse["data"]["_id"]);
+
+			return(true);
+		}
+
+		return(false);
 	}
 }
