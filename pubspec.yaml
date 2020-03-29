@@ -26,6 +26,7 @@ dependencies:
   http: any
   shared_preferences: any
   intl: any
+  toast: any
 
 dev_dependencies:
   flutter_test:

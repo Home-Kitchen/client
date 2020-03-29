@@ -103,17 +103,7 @@ import 'package:kitchen/constants/Store.dart';
 				child: Row
 				(
 					children:
-					[							
-						IconButton
-						(
-							icon:Icon(Icons.home),
-							color: Colors.white70,
-							iconSize: 35,								
-							onPressed: ()
-							{
-								Navigator.pushNamed(context, "/home");
-							},
-						),							
+					[																			
 						IconButton
 						(
 							icon:Icon(Icons.check_box),
@@ -127,19 +117,18 @@ import 'package:kitchen/constants/Store.dart';
 						),
 						IconButton
 						(
-							icon:Icon(Icons.face),
+							icon:Icon(Icons.format_list_numbered),
 							color: Colors.white70,
 							iconSize: 35,
 							alignment: Alignment.center,
 							onPressed: ()
 							{
-								Navigator.pushNamed(context, "/addItem");
+								Navigator.pushNamed(context, "/viewList");
 							},
 						),
-
 						IconButton
 						(
-							icon:Icon(Icons.list),
+							icon:Icon(Icons.shopping_cart),
 							color: Colors.white70,
 							iconSize: 35,
 							alignment: Alignment.center,
@@ -147,7 +136,7 @@ import 'package:kitchen/constants/Store.dart';
 							{
 								Navigator.pushNamed(context, "/orders");
 							},
-						),
+						),						
 					],
 				),
 			),
